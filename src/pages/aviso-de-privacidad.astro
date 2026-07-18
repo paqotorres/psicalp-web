@@ -1,0 +1,144 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import TriBar from "../components/TriBar.astro";
+
+const lastUpdated = "18 de julio de 2026";
+---
+
+<Layout
+  title="Aviso de Privacidad · Anarely Padilla"
+  description="Aviso de privacidad de PSIC ALP sobre el uso y protección de tus datos personales."
+>
+  <Header />
+  <main class="mx-auto max-w-3xl px-6 py-16 lg:px-8">
+    <TriBar />
+    <h1 class="mt-4 font-display text-3xl leading-tight text-balance text-tinta sm:text-4xl">
+      Aviso de Privacidad
+    </h1>
+    <p class="mt-2 text-sm text-tinta-suave">Última actualización: {lastUpdated}</p>
+
+    <div class="mt-8 rounded-2xl border-2 border-amarillo-300 bg-amarillo-50 p-4 text-sm leading-relaxed text-tinta">
+      Este aviso es un punto de partida general y no sustituye asesoría legal profesional. Dada
+      la naturaleza del servicio (datos de salud y de menores de edad), se recomienda que un
+      especialista en protección de datos lo revise antes de considerarlo definitivo.
+    </div>
+
+    <div class="mt-10 space-y-8 text-sm leading-relaxed text-tinta-suave">
+      <section>
+        <h2 class="font-display text-xl font-semibold text-tinta">1. Responsable del tratamiento de datos</h2>
+        <p class="mt-2">
+          Anarely Padilla ("PSIC ALP"), con domicilio en Blvd. Miguel Alemán 871, Valle del
+          Campestre, CP 35080, Gómez Palacio, Durango, es la responsable del uso y protección de
+          tus datos personales, en cumplimiento con la Ley Federal de Protección de Datos
+          Personales en Posesión de los Particulares.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-semibold text-tinta">2. Datos personales que recabamos</h2>
+        <p class="mt-2">
+          A través de este sitio, de WhatsApp o de correo electrónico, podemos recabar:
+        </p>
+        <ul class="mt-3 space-y-2">
+          <li class="flex items-start gap-2.5">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-rosa-400" />
+            Datos de identificación: nombre, y en su caso, nombre del paciente (niña, niño o adolescente).
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul-400" />
+            Datos de contacto: teléfono y correo electrónico.
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amarillo-400" />
+            Datos relacionados con el motivo de consulta, que pueden considerarse datos
+            personales sensibles al referirse a la salud emocional o psicológica.
+          </li>
+        </ul>
+        <p class="mt-3">
+          Cuando el paciente es menor de edad, estos datos son proporcionados por su madre,
+          padre o tutor legal, quien otorga su consentimiento para el tratamiento de dicha
+          información.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-semibold text-tinta">3. Finalidades del tratamiento</h2>
+        <p class="mt-2">Tus datos se utilizan para:</p>
+        <ul class="mt-3 space-y-2">
+          <li class="flex items-start gap-2.5">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-rosa-400" />
+            Agendar, confirmar y dar seguimiento a citas de consulta psicológica.
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul-400" />
+            Contactarte para brindarte información sobre nuestros servicios.
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amarillo-400" />
+            Llevar un expediente clínico básico, cuando corresponda, en beneficio del proceso terapéutico.
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-rosa-400" />
+            Procesar pagos relacionados con el servicio (depósitos y pago de sesión).
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-semibold text-tinta">4. Transferencia de datos</h2>
+        <p class="mt-2">
+          No compartimos, vendemos ni transferimos tus datos personales a terceros, salvo que
+          exista una obligación legal para hacerlo o cuando sea estrictamente necesario para
+          prestar el servicio (por ejemplo, proveedores de la infraestructura tecnológica del
+          sitio).
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-semibold text-tinta">5. Derechos ARCO</h2>
+        <p class="mt-2">
+          Tienes derecho a Acceder, Rectificar, Cancelar u Oponerte (derechos ARCO) al
+          tratamiento de tus datos personales. Para ejercerlos, escríbenos a{" "}
+          <a href="mailto:psic.alp@gmail.com" class="font-semibold text-tinta hover:text-rosa-500">psic.alp@gmail.com</a>
+          {" "}o por WhatsApp al{" "}
+          <a
+            href="https://wa.me/528715195688"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-semibold text-tinta hover:text-rosa-500"
+          >
+            +52 871 519 5688
+          </a>, indicando tu solicitud.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-semibold text-tinta">6. Uso de cookies y tecnologías de rastreo</h2>
+        <p class="mt-2">
+          Este sitio no utiliza cookies de rastreo publicitario. Puede emplear tecnologías
+          básicas necesarias para su funcionamiento, como recordar tus preferencias de
+          navegación.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-semibold text-tinta">7. Cambios a este aviso</h2>
+        <p class="mt-2">
+          Este aviso de privacidad puede actualizarse para reflejar cambios en nuestras
+          prácticas o en la normativa aplicable. Cualquier cambio será publicado en esta misma
+          página.
+        </p>
+      </section>
+    </div>
+
+    <a
+      href="/"
+      class="mt-12 inline-flex rounded-full border-2 border-tinta/15 px-6 py-3 text-sm font-semibold text-tinta transition-colors hover:border-rosa-400 hover:text-rosa-500"
+    >
+      ← Volver al inicio
+    </a>
+  </main>
+  <Footer />
+</Layout>

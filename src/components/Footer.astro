@@ -3,18 +3,18 @@ const columns = [
   {
     title: "Navegación",
     links: [
-      { label: "Inicio", href: "#inicio" },
-      { label: "Sobre Mí", href: "#sobre-mi" },
-      { label: "Servicios", href: "#servicios" },
-      { label: "Agenda tu Cita", href: "#agenda" },
+      { label: "Inicio", href: "/#inicio" },
+      { label: "Sobre Mí", href: "/#sobre-mi" },
+      { label: "Servicios", href: "/#servicios" },
+      { label: "Agenda tu Cita", href: "/#agenda" },
     ],
   },
   {
     title: "Recursos",
     links: [
-      { label: "Preguntas Frecuentes", href: "#preguntas-frecuentes" },
-      { label: "Política de Cancelación", href: "#politica-cancelacion" },
-      { label: "Contacto", href: "#contacto" },
+      { label: "Preguntas Frecuentes", href: "/#preguntas-frecuentes" },
+      { label: "Política de Cancelación", href: "/#politica-cancelacion" },
+      { label: "Contacto", href: "/#contacto" },
     ],
   },
 ];
@@ -26,7 +26,7 @@ const currentYear = new Date().getFullYear();
   <div class="mx-auto max-w-7xl px-6 py-14 lg:px-8">
     <div class="grid gap-10 lg:grid-cols-[1.3fr_0.8fr_0.8fr]">
       <div>
-        <a href="#inicio" class="flex items-center gap-3">
+        <a href="/#inicio" class="flex items-center gap-3">
           <img src="/logo-alp-mark.png" alt="PSIC ALP" class="h-11 w-auto" />
           <span class="font-display text-base font-semibold text-tinta">Anarely Padilla</span>
         </a>
@@ -94,7 +94,11 @@ const currentYear = new Date().getFullYear();
 
     <div class="mt-12 flex flex-col gap-2 border-t border-tinta/10 pt-6 text-xs text-tinta-suave sm:flex-row sm:items-center sm:justify-between">
       <p>© {currentYear} Anarely Padilla · Psicóloga Infantil. Todos los derechos reservados.</p>
-      <p>Aviso de privacidad · Términos de servicio</p>
+      <p>
+        <a href="/aviso-de-privacidad" class="hover:text-tinta">Aviso de privacidad</a>
+        {" · "}
+        <a href="/terminos-de-servicio" class="hover:text-tinta">Términos de servicio</a>
+      </p>
     </div>
   </div>
 </footer>
