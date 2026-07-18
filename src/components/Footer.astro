@@ -92,13 +92,16 @@ const currentYear = new Date().getFullYear();
       }
     </div>
 
-    <div class="mt-12 flex flex-col gap-2 border-t border-tinta/10 pt-6 text-xs text-tinta-suave sm:flex-row sm:items-center sm:justify-between">
-      <p>© {currentYear} Anarely Padilla · Psicóloga Infantil. Todos los derechos reservados.</p>
-      <p>
-        <a href="/aviso-de-privacidad" class="hover:text-tinta">Aviso de privacidad</a>
-        {" · "}
-        <a href="/terminos-de-servicio" class="hover:text-tinta">Términos de servicio</a>
-      </p>
+    <div class="mt-12 border-t border-tinta/10 pt-6 text-xs text-tinta-suave">
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <p>© {currentYear} Anarely Padilla · Psicóloga Infantil. Todos los derechos reservados.</p>
+        <p>
+          <a href="/aviso-de-privacidad" class="hover:text-tinta">Aviso de privacidad</a>
+          {" · "}
+          <a href="/terminos-de-servicio" class="hover:text-tinta">Términos de servicio</a>
+        </p>
+      </div>
+      <p class="mt-2">Cédula profesional (Licenciatura) 12200201 · Cédula profesional (Maestría) 15293450</p>
     </div>
   </div>
 </footer>
