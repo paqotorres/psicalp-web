@@ -179,6 +179,23 @@ import TriBar from "./TriBar.astro";
     return `${h12}:${String(m).padStart(2, "0")} ${period}`;
   }
 
+  function isSameDay(a: Date, b: Date) {
+    return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+  }
+
+  function timeToMinutes(time: string) {
+    const [h, m] = time.split(":").map(Number);
+    return h * 60 + m;
+  }
+
+  function hasFutureSlotsToday(date: Date) {
+    const now = new Date();
+    if (!isSameDay(date, now)) return true;
+    const nowMinutes = now.getHours() * 60 + now.getMinutes();
+    const times = schedule[date.getDay()] ?? [];
+    return times.some((time) => timeToMinutes(time) > nowMinutes);
+  }
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const minMonth = new Date(today.getFullYear(), today.getMonth(), 1);
@@ -219,7 +236,7 @@ import TriBar from "./TriBar.astro";
     for (let d = 1; d <= daysInMonth; d++) {
       const date = new Date(viewDate.getFullYear(), viewDate.getMonth(), d);
       const dow = date.getDay();
-      const available = dow in schedule && date.getTime() >= today.getTime();
+      const available = dow in schedule && date.getTime() >= today.getTime() && hasFutureSlotsToday(date);
       const isSelected = selectedDate !== null && date.getTime() === selectedDate.getTime();
 
       const btn = document.createElement("button");
@@ -261,11 +278,25 @@ import TriBar from "./TriBar.astro";
     }
 
     const times = schedule[selectedDate.getDay()];
+    const now = new Date();
+    const nowMinutes = now.getHours() * 60 + now.getMinutes();
+    const isToday = isSameDay(selectedDate, now);
+
     times.forEach((time) => {
+      const isPast = isToday && timeToMinutes(time) <= nowMinutes;
+      const isSelected = selectedTime === time;
+
       const btn = document.createElement("button");
       btn.type = "button";
       btn.textContent = formatTime12(time);
-      const isSelected = selectedTime === time;
+
+      if (isPast) {
+        btn.disabled = true;
+        btn.className = "rounded-lg border-2 border-tinta/10 px-2 py-2 text-sm font-medium text-tinta-suave/30 line-through cursor-not-allowed";
+        timeSlots.appendChild(btn);
+        return;
+      }
+
       btn.className = isSelected
         ? "rounded-lg bg-azul-500 px-2 py-2 text-sm font-semibold text-papel"
         : "rounded-lg border-2 border-tinta/10 px-2 py-2 text-sm font-medium text-tinta transition-colors hover:border-azul-400";
