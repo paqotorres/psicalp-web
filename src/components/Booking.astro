@@ -172,6 +172,18 @@ import TriBar from "./TriBar.astro";
     "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
   ];
 
+  // Días que nunca se atiende, sin importar el año o el día de la semana.
+  const blockedDates = [
+    { month: 11, day: 24 }, // 24 de diciembre
+    { month: 11, day: 25 }, // 25 de diciembre
+    { month: 11, day: 31 }, // 31 de diciembre
+    { month: 0, day: 1 }, // 1 de enero
+  ];
+
+  function isBlockedDate(date: Date) {
+    return blockedDates.some((b) => b.month === date.getMonth() && b.day === date.getDate());
+  }
+
   function formatTime12(time: string) {
     const [h, m] = time.split(":").map(Number);
     const period = h >= 12 ? "pm" : "am";
@@ -190,7 +202,7 @@ import TriBar from "./TriBar.astro";
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     for (let d = 1; d <= daysInMonth; d++) {
       const date = new Date(year, month, d);
-      if (date.getTime() > today.getTime() && date.getDay() in schedule) {
+      if (date.getTime() > today.getTime() && date.getDay() in schedule && !isBlockedDate(date)) {
         return true;
       }
     }
@@ -241,7 +253,7 @@ import TriBar from "./TriBar.astro";
       const date = new Date(viewDate.getFullYear(), viewDate.getMonth(), d);
       const dow = date.getDay();
       // No same-day booking: only dates strictly after today are selectable.
-      const available = dow in schedule && date.getTime() > today.getTime();
+      const available = dow in schedule && date.getTime() > today.getTime() && !isBlockedDate(date);
       const isSelected = selectedDate !== null && date.getTime() === selectedDate.getTime();
 
       const btn = document.createElement("button");
