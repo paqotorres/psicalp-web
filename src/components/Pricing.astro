@@ -1,0 +1,98 @@
+---
+import TriBar from "./TriBar.astro";
+---
+
+<section class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+  <div class="mx-auto max-w-2xl text-center" data-reveal>
+    <TriBar class="mx-auto" />
+    <h2 class="mt-4 font-display text-3xl leading-tight text-balance text-tinta sm:text-4xl">
+      Consulta Presencial
+    </h2>
+  </div>
+
+  <div class="mx-auto mt-12 grid max-w-4xl gap-8 lg:grid-cols-2">
+    <div
+      class="flex flex-col rounded-3xl border-2 border-tinta/10 bg-papel p-8 shadow-sm sm:p-10"
+      data-reveal
+      style="--reveal-delay: 80ms"
+    >
+      <p class="flex items-baseline gap-2">
+        <span class="font-display text-5xl font-bold text-rosa-500">$450</span>
+        <span class="text-sm text-tinta-suave">MXN / sesión</span>
+      </p>
+
+      <p class="mt-8 text-sm leading-relaxed text-tinta-suave">
+        <span class="font-semibold text-tinta">Importante:</span> en la primera cita{" "}
+        <span class="font-semibold text-tinta">solo acude el adulto</span>, debido a que se
+        realiza una entrevista para conocer más sobre el motivo de consulta.
+      </p>
+
+      <a
+        href="#agenda"
+        class="mt-8 flex items-center justify-center gap-2 rounded-full bg-tinta px-7 py-3.5 text-center text-sm font-semibold text-papel transition-colors hover:bg-rosa-500"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="4.5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8" />
+          <path d="M3 9.5h18M8 3v3M16 3v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+        Agendar mi Cita
+      </a>
+    </div>
+
+    <div
+      class="flex flex-col rounded-3xl border-2 border-tinta/10 bg-papel-100 p-8 sm:p-10"
+      data-reveal
+      style="--reveal-delay: 140ms"
+    >
+      <h3 class="font-display text-xl font-semibold text-tinta">Cómo agendar tu consulta</h3>
+
+      <ul class="mt-6 flex-1 space-y-4">
+        <li class="flex items-start gap-3 text-sm leading-relaxed text-tinta-suave">
+          <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-rosa-400" />
+          <span>
+            Una vez que Anarely confirme tu día y horario por WhatsApp, es necesario el{" "}
+            <span class="font-semibold text-tinta">depósito del 50% ($225)</span> para que tu
+            cita quede agendada. El resto se paga al finalizar la consulta, por transferencia o
+            en efectivo.
+          </span>
+        </li>
+        <li class="flex items-start gap-3 text-sm leading-relaxed text-tinta-suave">
+          <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-azul-400" />
+          <span>
+            La sesión tiene una duración de{" "}
+            <span class="font-semibold text-tinta">50 minutos</span>. Te pedimos{" "}
+            <span class="font-semibold text-tinta">puntualidad</span>.
+          </span>
+        </li>
+        <li class="flex items-start gap-3 text-sm leading-relaxed text-tinta-suave">
+          <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-amarillo-400" />
+          <span>
+            Si necesitas cancelar o reagendar, consulta la{" "}
+            <a href="#politica-cancelacion" class="font-semibold text-tinta underline decoration-amarillo-400 decoration-2 underline-offset-2 hover:text-rosa-500">
+              política de cancelación completa
+            </a>
+            .
+          </span>
+        </li>
+      </ul>
+
+      <a
+        href="https://maps.app.goo.gl/N4iZrzgRAAFgmqEA6"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-8 flex items-center justify-center gap-2 rounded-full border-2 border-tinta/15 px-7 py-3.5 text-center text-sm font-semibold text-tinta transition-colors hover:border-azul-400 hover:text-azul-600"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linejoin="round"
+          />
+          <circle cx="12" cy="9.5" r="2.3" stroke="currentColor" stroke-width="1.8" />
+        </svg>
+        Ver ubicación del consultorio
+      </a>
+    </div>
+  </div>
+</section>

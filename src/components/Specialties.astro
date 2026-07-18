@@ -1,0 +1,89 @@
+---
+import TriBar from "./TriBar.astro";
+
+const specialties = [
+  {
+    name: "Ansiedad y manejo emocional",
+    description:
+      "Herramientas para identificar, nombrar y regular emociones intensas como el miedo, la frustración o la angustia, tanto en casa como en la escuela.",
+    open: true,
+  },
+  {
+    name: "Duelo y pérdidas",
+    description:
+      "Acompañamiento para procesar pérdidas significativas, como una mudanza, un divorcio o la muerte de un ser querido, a un ritmo respetuoso para cada niño.",
+  },
+  {
+    name: "Conducta y límites",
+    description:
+      "Estrategias para entender el origen de las conductas desafiantes y establecer límites claros y consistentes desde el afecto.",
+  },
+  {
+    name: "TDAH y dificultades de aprendizaje",
+    description:
+      "Apoyo para mejorar la atención, la organización y la autorregulación, en coordinación con la escuela cuando es necesario.",
+  },
+  {
+    name: "Habilidades sociales",
+    description:
+      "Herramientas para relacionarse con otros niños, resolver conflictos y sentirse parte del grupo.",
+  },
+  {
+    name: "Autoestima y seguridad personal",
+    description:
+      "Fortalecimiento de la confianza y el autoconocimiento para que cada niño se sienta valioso tal como es.",
+  },
+];
+---
+
+<section id="especialidades" class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+  <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <div class="relative order-2 lg:order-1" data-reveal>
+      <div class="absolute -bottom-4 -left-4 -z-10 h-full w-full rounded-[2rem] bg-azul-200"></div>
+      <div class="group relative overflow-hidden rounded-[2rem] border-2 border-tinta/10 shadow-xl">
+        <img
+          src="/alp2.png"
+          alt="Anarely Padilla usando títeres en una sesión de terapia infantil"
+          class="h-[420px] w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110 sm:h-[480px]"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <div class="order-1 lg:order-2" data-reveal style="--reveal-delay: 100ms;">
+      <TriBar />
+      <h2 class="mt-4 font-display text-3xl leading-tight text-balance text-tinta sm:text-4xl">
+        Encuentra el acompañamiento adecuado para cada etapa
+      </h2>
+      <p class="mt-4 max-w-md text-base leading-relaxed text-tinta-suave">
+        Cada niño vive sus emociones de forma distinta. Estas son algunas de las áreas en las
+        que trabajamos juntos, siempre con un enfoque adaptado a su edad.
+      </p>
+
+      <ul class="mt-8 divide-y divide-tinta/10 border-y border-tinta/10">
+        {
+          specialties.map((item) => (
+            <li>
+              <details class="group" open={item.open}>
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-tinta transition-colors hover:text-rosa-500">
+                  <span class="text-base font-semibold">{item.name}</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="shrink-0 text-rosa-500 transition-transform group-open:rotate-90"
+                  >
+                    <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </summary>
+                <p class="pb-4 pr-8 text-sm leading-relaxed text-tinta-suave">{item.description}</p>
+              </details>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+---
+const phone = "528715195688";
+const message = "Quiero información sobre sus consultas psicológicas";
+const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Escribir por WhatsApp"
+  class="group fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center"
+>
+  <span class="absolute inset-0 rounded-full bg-[#25D366] opacity-60 animate-ping"></span>
+  <span class="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-transform duration-300 group-hover:scale-110">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16.001 3.2c-7.07 0-12.8 5.73-12.8 12.8 0 2.257.595 4.373 1.634 6.209L3.2 28.8l6.79-1.78a12.74 12.74 0 0 0 6.011 1.53h.005c7.07 0 12.8-5.73 12.8-12.8 0-3.42-1.332-6.635-3.75-9.05a12.723 12.723 0 0 0-9.055-3.5Zm0 23.36a10.49 10.49 0 0 1-5.35-1.465l-.384-.228-3.998 1.05 1.067-3.897-.25-.4a10.49 10.49 0 0 1-1.615-5.62c0-5.816 4.734-10.55 10.55-10.55a10.49 10.49 0 0 1 7.462 3.092 10.49 10.49 0 0 1 3.088 7.458c0 5.816-4.734 10.56-10.57 10.56Zm5.79-7.905c-.317-.159-1.874-.925-2.165-1.03-.29-.106-.5-.159-.712.159-.21.317-.816 1.03-1.001 1.24-.185.212-.37.238-.687.08-.317-.16-1.338-.494-2.55-1.575-.943-.84-1.58-1.878-1.765-2.196-.185-.317-.02-.489.139-.647.143-.142.317-.37.476-.556.159-.185.212-.317.317-.529.106-.212.053-.397-.026-.556-.08-.159-.712-1.717-.976-2.35-.257-.617-.518-.534-.712-.544l-.606-.01a1.16 1.16 0 0 0-.844.397c-.29.317-1.107 1.082-1.107 2.64s1.134 3.062 1.292 3.274c.159.212 2.23 3.404 5.404 4.773.756.327 1.346.522 1.806.668.759.242 1.45.208 1.996.126.609-.091 1.874-.766 2.138-1.507.264-.74.264-1.375.185-1.508-.079-.132-.29-.212-.607-.37Z" />
+    </svg>
+  </span>
+</a>

@@ -1,0 +1,76 @@
+---
+---
+
+<section id="inicio" class="relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-28">
+  <!-- decorative flat shapes (no blur, echoing the logo's flat color patches) -->
+  <div class="pointer-events-none absolute left-[6%] top-24 hidden h-5 w-5 rounded-full border-2 border-tinta/80 bg-amarillo-300 sm:block animate-float" style="--float-rotate: -6deg;"></div>
+  <div class="pointer-events-none absolute right-[8%] top-40 hidden h-8 w-8 rounded-full bg-azul-200 sm:block"></div>
+
+  <div class="mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-2 lg:gap-12 lg:px-8">
+    <!-- Left copy -->
+    <div class="relative z-10" data-reveal>
+      <span class="inline-block -rotate-2 rounded-lg bg-amarillo-300 px-3.5 py-1.5 text-sm font-bold text-tinta shadow-[3px_3px_0_0_rgba(23,20,15,0.15)]">
+        Psicología Infantil y Adolescente
+      </span>
+
+      <h1 class="mt-6 font-display text-4xl font-semibold leading-[1.1] text-balance text-tinta sm:text-5xl lg:text-[3.4rem]">
+        Un espacio seguro para que tu hijo <em class="not-italic font-semibold italic text-rosa-500">crezca en confianza</em>
+      </h1>
+
+      <p class="mt-6 max-w-lg text-base leading-relaxed text-tinta-suave sm:text-lg">
+        Acompaño a niñas, niños y adolescentes a comprender sus emociones y desarrollar
+        herramientas para su vida diaria, con un enfoque cálido y basado en evidencia,
+        respetando el ritmo de tu familia.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <a
+          href="#agenda"
+          class="rounded-full bg-tinta px-7 py-3.5 text-sm font-semibold text-papel transition-colors hover:bg-rosa-500"
+        >
+          Agendar una Sesión
+        </a>
+      </div>
+    </div>
+
+    <!-- Right image collage -->
+    <div class="relative mx-auto w-full max-w-md lg:max-w-none" data-reveal style="--reveal-delay: 120ms;">
+      <!-- floating stickers -->
+      <div class="pointer-events-none absolute -top-5 left-2 z-20 hidden flex-wrap gap-2 sm:flex lg:-top-7 lg:left-6">
+        <span class="-rotate-3 rounded-lg bg-rosa-500 px-3 py-1.5 text-xs font-bold text-papel shadow-md">Psicoterapia Gestalt Infantil</span>
+        <span class="rotate-2 rounded-lg bg-papel px-3 py-1.5 text-xs font-bold text-tinta shadow-md">Theraplay</span>
+      </div>
+      <div class="pointer-events-none absolute -top-5 right-2 z-20 hidden flex-wrap justify-end gap-2 sm:flex lg:-top-7 lg:right-2">
+        <span class="rotate-3 rounded-lg bg-azul-500 px-3 py-1.5 text-xs font-bold text-papel shadow-md">+5 Años de Experiencia</span>
+      </div>
+
+      <div class="relative">
+        <!-- offset color block behind photo, instead of a blurred gradient blob -->
+        <div class="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-[2rem] bg-amarillo-300"></div>
+
+        <div class="group relative overflow-hidden rounded-[2rem] border-2 border-tinta/10 shadow-xl">
+          <img
+            src="/foto-header.png"
+            alt="Anarely Padilla, psicóloga infantil de PSIC ALP"
+            class="h-[420px] w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110 sm:h-[480px] lg:h-[560px]"
+            loading="eager"
+          />
+        </div>
+      </div>
+
+      <!-- stat card -->
+      <div class="absolute -bottom-6 -left-4 z-20 w-56 rounded-2xl border-2 border-tinta/10 bg-papel p-4 shadow-xl sm:-left-8 sm:bottom-8">
+        <ul class="space-y-1.5">
+          <li class="flex items-start gap-2">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rosa-500"></span>
+            <span class="font-display text-lg font-bold leading-snug text-rosa-500">Psicóloga Clínica</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rosa-500"></span>
+            <span class="font-display text-lg font-bold leading-snug text-rosa-500">Maestría en Psicoterapia Gestalt Infantil</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

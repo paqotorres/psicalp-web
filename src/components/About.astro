@@ -1,0 +1,69 @@
+---
+import TriBar from "./TriBar.astro";
+
+const credentials = [
+  "Psicóloga Clínica · Universidad Autónoma de Durango",
+  "Maestría en Psicoterapia Gestalt Infantil · Centro de Entrenamiento Gestalt Fritz Perls",
+  "Principios básicos de Theraplay",
+  "+5 años de experiencia en el área infantojuvenil",
+];
+---
+
+<section id="sobre-mi" class="bg-papel-100 py-20">
+  <div class="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+    <div class="relative mx-auto w-full max-w-sm lg:max-w-none" data-reveal>
+      <div class="absolute -top-4 -left-4 -z-10 h-full w-full rounded-[2rem] bg-rosa-200"></div>
+      <div class="group relative overflow-hidden rounded-[2rem] border-2 border-tinta/10 shadow-xl">
+        <img
+          src="/alp3.jpg"
+          alt="Anarely Padilla, psicóloga infantil"
+          class="h-[420px] w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110 sm:h-[500px]"
+          loading="lazy"
+        />
+      </div>
+      <div class="absolute -top-5 -right-4 -rotate-2 rounded-2xl border-2 border-tinta/10 bg-amarillo-300 px-5 py-4 shadow-xl sm:right-4">
+        <p class="font-display text-sm font-semibold text-tinta">"Cada niño merece ser<br />escuchado a su manera."</p>
+      </div>
+    </div>
+
+    <div data-reveal style="--reveal-delay: 100ms;">
+      <TriBar />
+      <h2 class="mt-4 font-display text-3xl leading-tight text-balance text-tinta sm:text-4xl">
+        Hola, soy Anarely Padilla
+      </h2>
+      <p class="mt-5 text-base leading-relaxed text-tinta-suave">
+        Soy <span class="font-semibold text-tinta">Psicóloga Clínica por la Universidad Autónoma
+        de Durango</span>, con una{" "}
+        <span class="font-semibold text-tinta">Maestría en Psicoterapia Gestalt Infantil por el
+        Centro de Entrenamiento Gestalt Fritz Perls</span>. Trabajo con los principios básicos
+        de Theraplay y tengo más de 5 años de experiencia
+        acompañando a niñas, niños y adolescentes.
+      </p>
+      <p class="mt-4 text-base leading-relaxed text-tinta-suave">
+        Creo en una terapia cercana, sin juicios, donde el juego y la palabra abren la puerta
+        para que cada niño pueda nombrar lo que siente y construir herramientas que le
+        acompañen toda la vida.
+      </p>
+
+      <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+        {
+          credentials.map((item) => (
+            <li class="flex items-start gap-2.5 text-sm text-tinta-suave">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-0.5 shrink-0 text-azul-500">
+                <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <a
+        href="#agenda"
+        class="mt-8 inline-flex rounded-full bg-tinta px-7 py-3.5 text-sm font-semibold text-papel transition-colors hover:bg-rosa-500"
+      >
+        Agendar una Cita
+      </a>
+    </div>
+  </div>
+</section>

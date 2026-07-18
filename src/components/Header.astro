@@ -1,0 +1,79 @@
+---
+const navLinks = [
+  { label: "Inicio", href: "#inicio" },
+  { label: "Servicios", href: "#servicios" },
+  { label: "Sobre Mí", href: "#sobre-mi" },
+  { label: "Política de Cancelación", href: "#politica-cancelacion" },
+  { label: "Preguntas Frecuentes", href: "#preguntas-frecuentes" },
+  { label: "Contacto", href: "#contacto" },
+];
+
+const accents = [
+  "hover:decoration-rosa-400",
+  "hover:decoration-azul-400",
+  "hover:decoration-amarillo-400",
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-tinta/10 bg-papel/95 backdrop-blur-sm">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-8">
+    <a href="#inicio" class="flex items-center gap-3">
+      <img src="/logo-alp-mark.png" alt="PSIC ALP" class="h-11 w-auto" />
+      <span class="hidden h-9 w-px bg-tinta/10 sm:block"></span>
+      <span class="hidden leading-tight sm:block">
+        <span class="block font-display text-base font-semibold text-tinta">Anarely Padilla</span>
+        <span class="block text-xs text-tinta-suave">Psicóloga Infantojuvenil</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-5 xl:flex">
+      {
+        navLinks.map((link, i) => (
+          <a
+            href={link.href}
+            class:list={[
+              "text-sm font-semibold text-tinta-suave underline decoration-2 underline-offset-4 decoration-transparent transition-colors hover:text-tinta",
+              accents[i % accents.length],
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href="https://wa.me/528715195688?text=Quiero%20informaci%C3%B3n%20sobre%20sus%20consultas%20psicol%C3%B3gicas"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden text-sm font-semibold text-tinta-suave transition-colors hover:text-tinta xl:inline"
+      >
+        +52 871 519 5688
+      </a>
+      <a
+        href="#agenda"
+        class="rounded-full bg-tinta px-5 py-2.5 text-sm font-semibold text-papel transition-colors hover:bg-rosa-500"
+      >
+        Agendar Consulta
+      </a>
+
+      <details class="relative xl:hidden">
+        <summary class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-full border border-tinta/15">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </summary>
+        <div class="absolute right-0 top-12 flex w-56 flex-col gap-1 rounded-2xl border border-tinta/10 bg-papel p-4 shadow-xl">
+          {
+            navLinks.map((link) => (
+              <a href={link.href} class="rounded-lg px-3 py-2 text-sm font-semibold text-tinta-suave hover:bg-rosa-50 hover:text-tinta">
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </details>
+    </div>
+  </div>
+</header>

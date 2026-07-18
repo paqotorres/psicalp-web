@@ -1,0 +1,353 @@
+---
+import TriBar from "./TriBar.astro";
+---
+
+<section id="agenda" class="bg-papel-100 py-20">
+  <div class="mx-auto max-w-5xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center" data-reveal>
+      <TriBar class="mx-auto" />
+      <h2 class="mt-4 font-display text-3xl leading-tight text-balance text-tinta sm:text-4xl">
+        Agenda tu Cita
+      </h2>
+      <p class="mt-4 text-base leading-relaxed text-tinta-suave">
+        Atiendo lunes, martes y jueves de 4:00 pm a 7:00 pm, y sábados de 9:00 am a 2:00 pm.
+        Elige el día y horario que prefieras.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-6 max-w-2xl rounded-xl border-2 border-amarillo-300 bg-amarillo-50 p-4 text-sm text-tinta" data-reveal>
+      <span class="font-semibold">Lista de espera:</span> actualmente hay lista de espera para
+      citas nuevas. Al enviar tu solicitud, Anarely te confirmará disponibilidad directamente
+      por WhatsApp.
+    </div>
+
+    <div class="mt-8 rounded-3xl border-2 border-tinta/10 bg-papel p-6 shadow-sm sm:p-10" data-reveal style="--reveal-delay: 80ms">
+    <div id="booking-pending" class="hidden flex-col items-center py-6 text-center">
+      <span class="flex h-14 w-14 items-center justify-center rounded-full bg-amarillo-300 text-tinta">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 9v4.5M12 17h.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M10.29 3.86 1.82 18a1.5 1.5 0 0 0 1.29 2.25h17.78A1.5 1.5 0 0 0 22.18 18L13.71 3.86a1.5 1.5 0 0 0-2.42 0Z"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+      <p class="mt-4 font-display text-2xl font-bold text-balance text-tinta sm:text-3xl">
+        Tu cita todavía NO está confirmada
+      </p>
+      <p class="mt-3 max-w-md text-sm leading-relaxed text-tinta-suave">
+        Se abrió WhatsApp con tu solicitud lista. Debes <span class="font-semibold text-tinta">enviar ese mensaje</span> y
+        esperar a que Anarely te confirme el día y horario por ese medio. Tu lugar no queda
+        apartado hasta recibir esa confirmación.
+      </p>
+      <p class="mt-3 max-w-md text-xs text-tinta-suave/80">
+        ¿No se abrió WhatsApp? Es posible que tu navegador haya bloqueado la ventana emergente.
+        Vuelve a intentarlo o escríbenos directamente por WhatsApp.
+      </p>
+      <button
+        type="button"
+        id="bk-reset"
+        class="mt-6 rounded-full border-2 border-tinta/15 px-6 py-2.5 text-sm font-semibold text-tinta transition-colors hover:border-rosa-400 hover:text-rosa-500"
+      >
+        Elegir otro horario
+      </button>
+    </div>
+
+    <div id="booking-flow" class="grid gap-8 lg:grid-cols-2">
+      <!-- Calendar -->
+      <div>
+        <div class="flex items-center justify-between">
+          <button
+            type="button"
+            id="cal-prev"
+            aria-label="Mes anterior"
+            class="flex h-9 w-9 items-center justify-center rounded-full border border-tinta/15 text-tinta transition-colors hover:border-rosa-400 hover:text-rosa-500 disabled:cursor-not-allowed disabled:opacity-30"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <p id="cal-month-label" class="font-display text-lg font-semibold capitalize text-tinta"></p>
+          <button
+            type="button"
+            id="cal-next"
+            aria-label="Mes siguiente"
+            class="flex h-9 w-9 items-center justify-center rounded-full border border-tinta/15 text-tinta transition-colors hover:border-rosa-400 hover:text-rosa-500 disabled:cursor-not-allowed disabled:opacity-30"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="mt-4 grid grid-cols-7 gap-1 text-center text-xs font-semibold text-tinta-suave">
+          <span>dom</span><span>lun</span><span>mar</span><span>mié</span><span>jue</span><span>vie</span><span>sáb</span>
+        </div>
+        <div id="cal-grid" class="mt-2 grid grid-cols-7 gap-1"></div>
+
+        <div class="mt-6">
+          <p class="text-xs font-semibold text-tinta-suave">Horario</p>
+          <div id="time-slots" class="mt-2 grid grid-cols-3 gap-2">
+            <p id="time-slots-hint" class="col-span-3 text-sm text-tinta-suave/70">Selecciona primero un día disponible.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div>
+        <div id="booking-summary" class="mb-4 hidden rounded-xl bg-rosa-50 p-4 text-sm font-semibold text-tinta"></div>
+
+        <form id="booking-form" class="flex flex-col gap-4">
+          <input
+            type="text"
+            id="bk-name"
+            required
+            placeholder="Tu nombre"
+            class="rounded-xl border-2 border-tinta/10 bg-papel-100 px-4 py-3 text-sm text-tinta placeholder:text-tinta-suave/60 focus:border-azul-400 focus:outline-none"
+          />
+          <input
+            type="email"
+            id="bk-email"
+            required
+            placeholder="Correo electrónico"
+            class="rounded-xl border-2 border-tinta/10 bg-papel-100 px-4 py-3 text-sm text-tinta placeholder:text-tinta-suave/60 focus:border-azul-400 focus:outline-none"
+          />
+          <input
+            type="tel"
+            id="bk-phone"
+            required
+            placeholder="Teléfono / WhatsApp"
+            class="rounded-xl border-2 border-tinta/10 bg-papel-100 px-4 py-3 text-sm text-tinta placeholder:text-tinta-suave/60 focus:border-azul-400 focus:outline-none"
+          />
+          <textarea
+            id="bk-notes"
+            rows="3"
+            placeholder="Cuéntame brevemente el motivo de consulta (opcional)"
+            class="resize-none rounded-xl border-2 border-tinta/10 bg-papel-100 px-4 py-3 text-sm text-tinta placeholder:text-tinta-suave/60 focus:border-azul-400 focus:outline-none"
+          ></textarea>
+
+          <button
+            type="submit"
+            id="bk-submit"
+            disabled
+            class="mt-2 flex items-center justify-center gap-2 rounded-full bg-tinta px-7 py-3.5 text-center text-sm font-semibold text-papel transition-colors hover:bg-rosa-500 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-tinta"
+          >
+            <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.001 3.2c-7.07 0-12.8 5.73-12.8 12.8 0 2.257.595 4.373 1.634 6.209L3.2 28.8l6.79-1.78a12.74 12.74 0 0 0 6.011 1.53h.005c7.07 0 12.8-5.73 12.8-12.8 0-3.42-1.332-6.635-3.75-9.05a12.723 12.723 0 0 0-9.055-3.5Zm0 23.36a10.49 10.49 0 0 1-5.35-1.465l-.384-.228-3.998 1.05 1.067-3.897-.25-.4a10.49 10.49 0 0 1-1.615-5.62c0-5.816 4.734-10.55 10.55-10.55a10.49 10.49 0 0 1 7.462 3.092 10.49 10.49 0 0 1 3.088 7.458c0 5.816-4.734 10.56-10.57 10.56Zm5.79-7.905c-.317-.159-1.874-.925-2.165-1.03-.29-.106-.5-.159-.712.159-.21.317-.816 1.03-1.001 1.24-.185.212-.37.238-.687.08-.317-.16-1.338-.494-2.55-1.575-.943-.84-1.58-1.878-1.765-2.196-.185-.317-.02-.489.139-.647.143-.142.317-.37.476-.556.159-.185.212-.317.317-.529.106-.212.053-.397-.026-.556-.08-.159-.712-1.717-.976-2.35-.257-.617-.518-.534-.712-.544l-.606-.01a1.16 1.16 0 0 0-.844.397c-.29.317-1.107 1.082-1.107 2.64s1.134 3.062 1.292 3.274c.159.212 2.23 3.404 5.404 4.773.756.327 1.346.522 1.806.668.759.242 1.45.208 1.996.126.609-.091 1.874-.766 2.138-1.507.264-.74.264-1.375.185-1.508-.079-.132-.29-.212-.607-.37Z" />
+            </svg>
+            Solicitar cita por WhatsApp
+          </button>
+          <p id="bk-hint" class="text-xs text-tinta-suave">
+            Selecciona un día y horario para continuar.
+          </p>
+          <p class="text-xs text-tinta-suave">
+            Antes de agendar, revisa nuestra{" "}
+            <a
+              href="#politica-cancelacion"
+              class="font-semibold text-tinta underline decoration-amarillo-400 decoration-2 underline-offset-2 hover:text-rosa-500"
+            >
+              política de cancelación
+            </a>
+            .
+          </p>
+        </form>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const schedule: Record<number, string[]> = {
+    1: ["16:00", "17:00", "18:00", "19:00"],
+    2: ["16:00", "17:00", "18:00", "19:00"],
+    4: ["16:00", "17:00", "18:00", "19:00"],
+    6: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00"],
+  };
+
+  const monthNames = [
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
+  ];
+
+  function formatTime12(time: string) {
+    const [h, m] = time.split(":").map(Number);
+    const period = h >= 12 ? "pm" : "am";
+    const h12 = h % 12 === 0 ? 12 : h % 12;
+    return `${h12}:${String(m).padStart(2, "0")} ${period}`;
+  }
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const minMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  const maxMonth = new Date(today.getFullYear(), today.getMonth() + 3, 1);
+
+  let viewDate = new Date(minMonth);
+  let selectedDate: Date | null = null;
+  let selectedTime: string | null = null;
+
+  const grid = document.getElementById("cal-grid")!;
+  const monthLabel = document.getElementById("cal-month-label")!;
+  const prevBtn = document.getElementById("cal-prev") as HTMLButtonElement;
+  const nextBtn = document.getElementById("cal-next") as HTMLButtonElement;
+  const timeSlots = document.getElementById("time-slots")!;
+  const summary = document.getElementById("booking-summary")!;
+  const submitBtn = document.getElementById("bk-submit") as HTMLButtonElement;
+  const hint = document.getElementById("bk-hint")!;
+  const form = document.getElementById("booking-form") as HTMLFormElement;
+  const bookingFlow = document.getElementById("booking-flow")!;
+  const bookingPending = document.getElementById("booking-pending")!;
+  const resetBtn = document.getElementById("bk-reset") as HTMLButtonElement;
+
+  function renderCalendar() {
+    grid.innerHTML = "";
+    monthLabel.textContent = `${monthNames[viewDate.getMonth()]} ${viewDate.getFullYear()}`;
+
+    prevBtn.disabled = viewDate.getTime() <= minMonth.getTime();
+    nextBtn.disabled = viewDate.getTime() >= maxMonth.getTime();
+
+    const firstDay = new Date(viewDate.getFullYear(), viewDate.getMonth(), 1);
+    const startOffset = firstDay.getDay();
+    const daysInMonth = new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 0).getDate();
+
+    for (let i = 0; i < startOffset; i++) {
+      grid.appendChild(document.createElement("span"));
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(viewDate.getFullYear(), viewDate.getMonth(), d);
+      const dow = date.getDay();
+      const available = dow in schedule && date.getTime() >= today.getTime();
+      const isSelected = selectedDate !== null && date.getTime() === selectedDate.getTime();
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = String(d);
+
+      if (isSelected) {
+        btn.className = "h-9 rounded-lg bg-rosa-500 text-sm font-bold text-papel";
+      } else if (available) {
+        btn.className = "h-9 rounded-lg text-sm font-medium text-tinta transition-colors hover:bg-rosa-100";
+      } else {
+        btn.disabled = true;
+        btn.className = "h-9 rounded-lg text-sm text-tinta-suave/25 cursor-not-allowed";
+      }
+
+      if (available) {
+        btn.addEventListener("click", () => {
+          selectedDate = date;
+          selectedTime = null;
+          renderCalendar();
+          renderTimeSlots();
+          updateSummary();
+        });
+      }
+
+      grid.appendChild(btn);
+    }
+  }
+
+  function renderTimeSlots() {
+    timeSlots.innerHTML = "";
+    if (!selectedDate) {
+      const hintEl = document.createElement("p");
+      hintEl.id = "time-slots-hint";
+      hintEl.className = "col-span-3 text-sm text-tinta-suave/70";
+      hintEl.textContent = "Selecciona primero un día disponible.";
+      timeSlots.appendChild(hintEl);
+      return;
+    }
+
+    const times = schedule[selectedDate.getDay()];
+    times.forEach((time) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = formatTime12(time);
+      const isSelected = selectedTime === time;
+      btn.className = isSelected
+        ? "rounded-lg bg-azul-500 px-2 py-2 text-sm font-semibold text-papel"
+        : "rounded-lg border-2 border-tinta/10 px-2 py-2 text-sm font-medium text-tinta transition-colors hover:border-azul-400";
+      btn.addEventListener("click", () => {
+        selectedTime = time;
+        renderTimeSlots();
+        updateSummary();
+      });
+      timeSlots.appendChild(btn);
+    });
+  }
+
+  function updateSummary() {
+    if (selectedDate && selectedTime) {
+      const dateLabel = selectedDate.toLocaleDateString("es-MX", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+      });
+      summary.textContent = `Solicitarás cita: ${dateLabel} a las ${formatTime12(selectedTime)}`;
+      summary.classList.remove("hidden");
+      submitBtn.disabled = false;
+      hint.classList.add("hidden");
+    } else {
+      summary.classList.add("hidden");
+      submitBtn.disabled = true;
+      hint.classList.remove("hidden");
+    }
+  }
+
+  prevBtn.addEventListener("click", () => {
+    viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1);
+    renderCalendar();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1);
+    renderCalendar();
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!selectedDate || !selectedTime) return;
+
+    const name = (document.getElementById("bk-name") as HTMLInputElement).value.trim();
+    const email = (document.getElementById("bk-email") as HTMLInputElement).value.trim();
+    const phone = (document.getElementById("bk-phone") as HTMLInputElement).value.trim();
+    const notes = (document.getElementById("bk-notes") as HTMLTextAreaElement).value.trim();
+
+    const dateLabel = selectedDate.toLocaleDateString("es-MX", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+
+    let message = `Hola, quiero agendar una cita.\nNombre: ${name}\nFecha preferida: ${dateLabel}\nHorario preferido: ${formatTime12(selectedTime)}\nTeléfono: ${phone}\nCorreo: ${email}`;
+    if (notes) {
+      message += `\nMotivo de consulta: ${notes}`;
+    }
+
+    const url = `https://wa.me/528715195688?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener");
+
+    bookingFlow.classList.add("hidden");
+    bookingPending.classList.remove("hidden");
+    bookingPending.classList.add("flex");
+  });
+
+  resetBtn.addEventListener("click", () => {
+    selectedDate = null;
+    selectedTime = null;
+    form.reset();
+    renderCalendar();
+    renderTimeSlots();
+    updateSummary();
+
+    bookingPending.classList.add("hidden");
+    bookingPending.classList.remove("flex");
+    bookingFlow.classList.remove("hidden");
+  });
+
+  renderCalendar();
+  renderTimeSlots();
+</script>
