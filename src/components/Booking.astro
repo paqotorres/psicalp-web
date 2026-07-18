@@ -184,7 +184,28 @@ import TriBar from "./TriBar.astro";
   const minMonth = new Date(today.getFullYear(), today.getMonth(), 1);
   const maxMonth = new Date(today.getFullYear(), today.getMonth() + 3, 1);
 
-  let viewDate = new Date(minMonth);
+  function monthHasAvailableDay(monthDate: Date) {
+    const year = monthDate.getFullYear();
+    const month = monthDate.getMonth();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(year, month, d);
+      if (date.getTime() > today.getTime() && date.getDay() in schedule) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function findInitialViewMonth() {
+    let candidate = new Date(minMonth);
+    while (!monthHasAvailableDay(candidate) && candidate.getTime() < maxMonth.getTime()) {
+      candidate = new Date(candidate.getFullYear(), candidate.getMonth() + 1, 1);
+    }
+    return candidate;
+  }
+
+  let viewDate = findInitialViewMonth();
   let selectedDate: Date | null = null;
   let selectedTime: string | null = null;
 
